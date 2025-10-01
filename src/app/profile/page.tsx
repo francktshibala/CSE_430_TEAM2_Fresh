@@ -158,7 +158,7 @@ export default function ProfilePage() {
           <button
             onClick={handleLogout}
             style={{
-              backgroundColor: '#dc3545',
+              backgroundColor: '#8B4513',
               color: 'white',
               padding: '10px 20px',
               border: 'none',
@@ -167,8 +167,8 @@ export default function ProfilePage() {
               cursor: 'pointer',
               fontWeight: '500'
             }}
-            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#c82333'}
-            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#dc3545'}
+            onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a0522d'}
+            onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8B4513'}
           >
             Sign Out
           </button>
@@ -211,7 +211,9 @@ export default function ProfilePage() {
                 padding: '12px',
                 backgroundColor: '#f8f9fa',
                 borderRadius: '4px',
-                border: '1px solid #e9ecef'
+                border: '1px solid #e9ecef',
+                color: '#333',
+                fontWeight: '500'
               }}>
                 {user?.name}
               </div>
@@ -230,7 +232,9 @@ export default function ProfilePage() {
                 padding: '12px',
                 backgroundColor: '#f8f9fa',
                 borderRadius: '4px',
-                border: '1px solid #e9ecef'
+                border: '1px solid #e9ecef',
+                color: '#333',
+                fontWeight: '500'
               }}>
                 {user?.email}
               </div>
@@ -252,7 +256,7 @@ export default function ProfilePage() {
                 border: '1px solid #e9ecef'
               }}>
                 <span style={{
-                  backgroundColor: user?.accountType === 'SELLER' ? '#28a745' : '#6c757d',
+                  backgroundColor: user?.accountType === 'SELLER' ? '#8B4513' : user?.accountType === 'ADMIN' ? '#dc3545' : '#6c757d',
                   color: 'white',
                   padding: '4px 8px',
                   borderRadius: '12px',
@@ -277,7 +281,9 @@ export default function ProfilePage() {
                 padding: '12px',
                 backgroundColor: '#f8f9fa',
                 borderRadius: '4px',
-                border: '1px solid #e9ecef'
+                border: '1px solid #e9ecef',
+                color: '#333',
+                fontWeight: '500'
               }}>
                 {user?.createdAt ? new Date(user.createdAt).toLocaleDateString() : 'N/A'}
               </div>
@@ -329,7 +335,7 @@ export default function ProfilePage() {
             {user?.accountType === 'SELLER' && (
               <button
                 style={{
-                  backgroundColor: '#28a745',
+                  backgroundColor: '#6c757d',
                   color: 'white',
                   padding: '15px 20px',
                   border: 'none',
@@ -339,8 +345,8 @@ export default function ProfilePage() {
                   cursor: 'pointer',
                   textAlign: 'center'
                 }}
-                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#218838'}
-                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#28a745'}
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#5a6268'}
+                onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6c757d'}
               >
                 Manage Products
               </button>
@@ -348,7 +354,7 @@ export default function ProfilePage() {
 
             <button
               style={{
-                backgroundColor: '#6c757d',
+                backgroundColor: '#8B4513',
                 color: 'white',
                 padding: '15px 20px',
                 border: 'none',
@@ -358,8 +364,8 @@ export default function ProfilePage() {
                 cursor: 'pointer',
                 textAlign: 'center'
               }}
-              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#5a6268'}
-              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6c757d'}
+              onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a0522d'}
+              onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8B4513'}
             >
               View Orders
             </button>
