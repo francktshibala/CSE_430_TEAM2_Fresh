@@ -19,29 +19,30 @@ export default function ProfilePage() {
   const router = useRouter();
 
   useEffect(() => {
-    fetchProfile();
-  }, []);
+    const fetchProfile = async () => {
+      try {
+        const response = await fetch('/api/auth/profile', {
+          credentials: 'include'
+        });
 
-  const fetchProfile = async () => {
-    try {
-      const response = await fetch('/api/auth/profile', {
-        credentials: 'include'
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setUser(data.user);
-      } else if (response.status === 401) {
-        router.push('/login');
-      } else {
-        setError('Failed to load profile');
+        if (response.ok) {
+          const data = await response.json();
+          setUser(data.user);
+        } else if (response.status === 401) {
+          router.push('/login');
+        } else {
+          setError('Failed to load profile');
+        }
+      } catch {
+        setError('Network error');
+      } finally {
+        setLoading(false);
       }
-    } catch (err) {
-      setError('Network error');
-    } finally {
-      setLoading(false);
-    }
-  };
+    };
+    
+    fetchProfile();
+  }, [router]);
+
 
   const handleLogout = async () => {
     try {
@@ -53,8 +54,8 @@ export default function ProfilePage() {
       if (response.ok) {
         router.push('/login');
       }
-    } catch (err) {
-      console.error('Logout error:', err);
+    } catch {
+      console.error('Logout error');
     }
   };
 

@@ -35,7 +35,7 @@ export default function SignupPage() {
       } else {
         setError(data.error || 'Registration failed');
       }
-    } catch (err) {
+    } catch {
       setError('Network error. Please try again.');
     } finally {
       setLoading(false);
