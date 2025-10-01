@@ -134,7 +134,9 @@ export default function LoginPage() {
                 borderRadius: '4px',
                 fontSize: '16px',
                 outline: 'none',
-                transition: 'border-color 0.3s'
+                transition: 'border-color 0.3s',
+                color: '#333',
+                fontWeight: '500'
               }}
               onFocus={(e) => e.target.style.borderColor = '#8B4513'}
               onBlur={(e) => e.target.style.borderColor = '#ddd'}
