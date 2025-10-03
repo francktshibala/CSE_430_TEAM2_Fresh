@@ -329,7 +329,6 @@ export default function ProfilePage() {
               onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#a0522d'}
               onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#8B4513'}
             >
-              
               Browse Products
             </button>
 
@@ -346,9 +345,7 @@ export default function ProfilePage() {
                   cursor: 'pointer',
                   textAlign: 'center'
                 }}
-                onMouseOver={(e) =>  e.currentTarget.style.backgroundColor = '#5a6268'}
-                onClick={() => router.push('/products/manage')}
-
+                onMouseOver={(e) => e.currentTarget.style.backgroundColor = '#5a6268'}
                 onMouseOut={(e) => e.currentTarget.style.backgroundColor = '#6c757d'}
               >
                 Manage Products
