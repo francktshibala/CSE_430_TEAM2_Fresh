@@ -31,45 +31,14 @@ export default function ProductPage() {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        // Mock data for different product IDs
-        const mockProducts: { [key: number]: Product } = {
-          1: {
-            id: 1,
-            name: 'Handcrafted Ceramic Bowl',
-            description: 'Beautiful handmade ceramic bowl perfect for serving or decoration. Made with love by local artisans.',
-            price: 45.99,
-            image: '/ceramic-bowls.webp',
-            user: { name: 'Maria Rodriguez' },
-            category: { name: 'Pottery' }
-          },
-          2: {
-            id: 2,
-            name: 'Wooden Animal Sculpture',
-            description: 'Unique hand-carved wooden animal sculpture. Each piece is one-of-a-kind and showcases traditional woodworking techniques.',
-            price: 89.99,
-            image: '/animal-wood.webp',
-            user: { name: 'Carlos Mendez' },
-            category: { name: 'Wood Carving' }
-          },
-          3: {
-            id: 3,
-            name: 'Artisan Jewelry Set',
-            description: 'Elegant handcrafted jewelry set featuring natural stones and silver. Perfect for special occasions or everyday wear.',
-            price: 125.50,
-            image: '/jewelry.webp',
-            user: { name: 'Ana Silva' },
-            category: { name: 'Jewelry' }
-          }
-        };
-        
-        const mockProduct = mockProducts[productId];
-        
-        if (!mockProduct) {
-          setError('Product not found');
-          return;
+        const response = await fetch(`/api/products/${productId}`);
+        const data = await response.json();
+
+        if (response.ok) {
+          setProduct(data.product);
+        } else {
+          setError(data.error || 'Product not found');
         }
-        
-        setProduct(mockProduct);
       } catch {
         setError('Failed to load product');
       } finally {
