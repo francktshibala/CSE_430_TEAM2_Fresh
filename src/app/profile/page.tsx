@@ -146,7 +146,7 @@ export default function ProfilePage() {
               fontWeight: 'bold',
               margin: '0 0 10px 0'
             }}>
-              Welcome, {user?.name}!
+              Welcome, {user?.name}! ({user?.accountType})
             </h1>
             <p style={{
               color: '#666',
