@@ -31,7 +31,7 @@ export default function SignupPage() {
       const data = await response.json();
 
       if (response.ok) {
-        router.push('/profile');
+        router.push('/login');
       } else {
         setError(data.error || 'Registration failed');
       }
