@@ -56,7 +56,7 @@ export default function FeaturedProducts() {
           );
         })}
           </div>
-          <Link key="allProducts" href="#">View All Products</Link>
+          <Link key="allProducts" href="/product">View All Products</Link>
     </section>
   );
 }
