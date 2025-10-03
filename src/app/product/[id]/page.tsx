@@ -1,3 +1,4 @@
+
 'use client';
 
 import { useEffect, useState } from 'react';
@@ -224,4 +225,5 @@ export default function ProductPage() {
       </div>
     </div>
   );
+
 }
