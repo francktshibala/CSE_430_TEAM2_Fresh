@@ -10,7 +10,7 @@ export interface Product {
     name: string
     description: string | null
     price: number
-    image: string
+    image: string | null
     userId: number
     categoryId: number
     reviews: Review[]

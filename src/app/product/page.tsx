@@ -34,7 +34,7 @@ export default async function ProductPage() {
                 key={item.name}
                 title={item.name}
                 creator={item.user[0].name}
-                image={item.image}
+                image={item.image ?? "/images/placeholder.png"} // fallback
                 price={item.price}
               rating={item.average}
               ratingAmount={item.reviews.length}
