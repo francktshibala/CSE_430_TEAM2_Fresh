@@ -9,6 +9,7 @@ export default async function ProductPage() {
 
   
 
+  
   const productsWithRatings = await Promise.all(
     products.map(async (product) => {
       console.log(product);
