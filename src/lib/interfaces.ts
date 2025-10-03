@@ -18,6 +18,8 @@ export interface Product {
     updatedAt: Date
 }
 
+
+
 export interface Review {
   id: number;
   rating: number;
