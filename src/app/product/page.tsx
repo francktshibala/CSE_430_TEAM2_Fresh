@@ -7,6 +7,9 @@ import { calculateAverage } from "@/lib/utils";
 export default async function ProductPage() {
   const products: Product[] = await getAllProducts();
 
+  
+
+  
   const productsWithRatings = await Promise.all(
     products.map(async (product) => {
       console.log(product);
