@@ -10,6 +10,7 @@ const nextConfig: NextConfig = {
       "buffalojackson.com",
       "encrypted-tbn1.gstatic.com",
       "encrypted-tbn2.gstatic.com",
+      "www.blackartdepot.com",
     ],
   },
 };
