@@ -39,3 +39,9 @@ export interface User {
   createdAt: Date
   updatedAt: Date
 }
+
+export interface Category {
+  id: number
+  name: string
+  products: Product[]
+}
