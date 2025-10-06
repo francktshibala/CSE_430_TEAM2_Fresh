@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
+// Products
 export async function getAllProducts() {
   const products = await prisma.product.findMany({
     include: {
@@ -27,11 +28,41 @@ export async function getProductById(productId: number) {
       },
     },
   });
+
   return products;
 }
 
+export async function getThreeProducts() {
+  const allProductIds = await prisma.product.findMany({
+    select: { id: true },
+  });
+
+  const random = allProductIds.sort(() => 0.5 - Math.random()).slice(0, 3);
+
+  const randomProducts = await prisma.product.findMany({
+    where: {
+      id: { in: random.map((item: { id: number }) => item.id) },
+    },
+    include: {
+      reviews: {
+        include: {
+          user: true,
+        },
+      },
+    },
+  });
+  return randomProducts;
+}
+
+// Categories
+export async function getAllCategories() {
+  const categories = await prisma.category.findMany();
+  return categories;
+}
+
+// Users
 export async function getUserById(userId: number) {
-  const products = await prisma.user.findMany({
+  const products = await prisma.user.findUnique({
     where: {
       id: userId,
     },
@@ -41,26 +72,4 @@ export async function getUserById(userId: number) {
     },
   });
   return products;
-}
-
-export async function getThreeProducts() {
-const allProductIds = await prisma.product.findMany({
-  select: { id: true },
-});
-    
-    const random = allProductIds.sort(() => 0.5 - Math.random()).slice(0, 3);
-    
-    const randomProducts = await prisma.product.findMany({
-      where: {
-        id: { in: random.map((item : {id: number}) => item.id) },
-      },
-      include: {
-        reviews: {
-          include: {
-            user: true,
-          },
-        },
-      },
-    });
-  return randomProducts;
 }

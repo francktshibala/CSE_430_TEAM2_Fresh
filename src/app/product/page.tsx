@@ -1,13 +1,12 @@
 import styles from "@/app/page.module.css";
-import Card from "@/app/ui/products/card";
-import { getAllProducts, getUserById } from "@/lib/data";
+import { getAllCategories, getAllProducts, getUserById } from "@/lib/data";
 import { Product } from "@/lib/interfaces";
 import { calculateAverage } from "@/lib/utils";
+import ProductList from "@/app/ui/products/product-list"
 
 export default async function ProductPage() {
   const products: Product[] = await getAllProducts();
-
-  
+  const categories = await getAllCategories();
 
   
   const productsWithRatings = await Promise.all(
@@ -28,23 +27,10 @@ export default async function ProductPage() {
     <section className={styles.featuredSection}>
       <h2>Explore Our Products</h2>
       <p>From artisan hands to your home</p>
-      <div className={styles.featuredProducts}>
-        {productsWithRatings.map((item) => {
-          console.log(item)
-          return (
-              <Card
-                id={item.id}
-                key={item.name}
-                title={item.name}
-                creator={item.user[0].name}
-                image={item.image}
-                price={item.price}
-              rating={item.average}
-              ratingAmount={item.reviews.length}
-              />
-          );
-        })}
-      </div>
+      <ProductList
+        products={productsWithRatings}
+        categories={categories}
+      />
     </section>
   );
 }

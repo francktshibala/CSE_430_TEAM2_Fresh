@@ -33,16 +33,16 @@ export default async function ProductPage() {
       <div className={styles.featuredProducts}>
         {productsWithRatings.map((item) => {
           return (
-              <Card
-                id={item.id}
-                key={item.name}
-                title={item.name}
-                creator={item.user[0].name}
-                image={item.image}
-                price={item.price}
+            <Card
+              id={item.id}
+              key={item.name}
+              title={item.name}
+              creator={item.user?.name ?? "Unknown"}
+              image={item.image}
+              price={item.price}
               rating={item.average}
-              ratingAmount={(item.reviews.length)}
-              />
+              ratingAmount={item.reviews.length}
+            />
           );
         })}
       </div>
