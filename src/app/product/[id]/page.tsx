@@ -115,17 +115,13 @@ export default function ProductPage() {
         >
           <div>
             <Image
-              src={product.image || "/fallback.png"}
+              src={product.image}
               alt={product.name}
               style={{
                 width: "100%",
                 height: "400px",
                 objectFit: "cover",
                 borderRadius: "8px",
-              }}
-              onError={(e) => {
-                const target = e.currentTarget as HTMLImageElement;
-                target.src = '/fallback.png';
               }}
             />
           </div>

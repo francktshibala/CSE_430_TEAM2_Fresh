@@ -47,14 +47,10 @@ export default function CartPage() {
             {cart.map((item) => (
               <li key={item.id} className={styles.cartItem}>
                 <Image
-                  src={item.image || "/fallback.jpg"}
+                  src={item.image}
                   alt={item.name}
                   width={50}
                   height={50}
-                  onError={(e) => {
-                    const target = e.currentTarget as HTMLImageElement;
-                    target.src = '/fallback.png';
-                  }}  
                 />
                 <div>
                   <h4>{item.name}</h4>
