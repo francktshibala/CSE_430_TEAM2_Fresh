@@ -6,6 +6,7 @@ import { useParams } from 'next/navigation';
 import ReviewsList from '@/app/ui/reviews-list';
 import ReviewForm from '@/app/ui/review-form';
 import Image from 'next/image';
+import { useCart } from '@/app/context/CartContext';
 
 interface Product {
   id: number;
@@ -29,6 +30,7 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [refreshReviews, setRefreshReviews] = useState(0);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -56,6 +58,20 @@ export default function ProductPage() {
   const handleReviewSubmitted = () => {
     setRefreshReviews(prev => prev + 1);
   };
+
+    const handleAddToCart = () => {
+      if (!product) return;
+
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      };
+
+      addToCart(cartItem);
+    };
 
   if (loading) {
     return (
@@ -174,6 +190,7 @@ export default function ProductPage() {
             )}
 
             <button
+              onClick={handleAddToCart}
               style={{
                 backgroundColor: "#8B4513",
                 color: "white",
