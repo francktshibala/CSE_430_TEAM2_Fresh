@@ -117,6 +117,8 @@ export default function ProductPage() {
             <Image
               src={product.image}
               alt={product.name}
+              width={530}
+              height={400}
               style={{
                 width: "100%",
                 height: "400px",
