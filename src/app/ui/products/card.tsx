@@ -53,10 +53,14 @@ export default function Card({
     <div className={styles.featuredcard}>
       <div className={styles.imageContainer}>
         <Image
-          src={`${image}`}
+          src={image || "/fallback.jpg"}
           alt={`${title} image`}
           width={600}
           height={450}
+          onError={(e) => {
+            const target = e.currentTarget as HTMLImageElement;
+            target.src = "/fallback.png";
+          }}
         />
       </div>
       <div className={styles.productInfo}>

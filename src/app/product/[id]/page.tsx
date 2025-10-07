@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import ReviewsList from '@/app/ui/reviews-list';
 import ReviewForm from '@/app/ui/review-form';
+import Image from 'next/image';
 
 interface Product {
   id: number;
@@ -85,87 +86,107 @@ export default function ProductPage() {
   }
 
   return (
-    <div style={{ 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '20px',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
-    }}>
+    <div
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "20px",
+        backgroundColor: "#f5f5f5",
+        minHeight: "100vh",
+      }}
+    >
       {/* Product Details */}
-      <div style={{
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        padding: '30px',
-        marginBottom: '30px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '40px',
-          alignItems: 'start'
-        }}>
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "8px",
+          padding: "30px",
+          marginBottom: "30px",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "40px",
+            alignItems: "start",
+          }}
+        >
           <div>
-            <img
-              src={product.image}
+            <Image
+              src={product.image || "/fallback.png"}
               alt={product.name}
               style={{
-                width: '100%',
-                height: '400px',
-                objectFit: 'cover',
-                borderRadius: '8px'
+                width: "100%",
+                height: "400px",
+                objectFit: "cover",
+                borderRadius: "8px",
+              }}
+              onError={(e) => {
+                const target = e.currentTarget as HTMLImageElement;
+                target.src = '/fallback.png';
               }}
             />
           </div>
-          
+
           <div>
-            <h1 style={{ 
-              color: '#8B4513', 
-              fontSize: '32px', 
-              marginBottom: '10px' 
-            }}>
+            <h1
+              style={{
+                color: "#8B4513",
+                fontSize: "32px",
+                marginBottom: "10px",
+              }}
+            >
               {product.name}
             </h1>
-            
-            <p style={{ 
-              color: '#666', 
-              fontSize: '16px', 
-              marginBottom: '15px' 
-            }}>
+
+            <p
+              style={{
+                color: "#666",
+                fontSize: "16px",
+                marginBottom: "15px",
+              }}
+            >
               by {product.user.name} • {product.category.name}
             </p>
-            
-            <p style={{ 
-              fontSize: '28px', 
-              fontWeight: 'bold', 
-              color: '#8B4513',
-              marginBottom: '20px'
-            }}>
+
+            <p
+              style={{
+                fontSize: "28px",
+                fontWeight: "bold",
+                color: "#8B4513",
+                marginBottom: "20px",
+              }}
+            >
               ${product.price}
             </p>
-            
+
             {product.description && (
-              <p style={{ 
-                color: '#555', 
-                lineHeight: '1.6',
-                marginBottom: '30px',
-                fontSize: '16px'
-              }}>
+              <p
+                style={{
+                  color: "#555",
+                  lineHeight: "1.6",
+                  marginBottom: "30px",
+                  fontSize: "16px",
+                }}
+              >
                 {product.description}
               </p>
             )}
-            
-            <button style={{
-              backgroundColor: '#8B4513',
-              color: 'white',
-              padding: '15px 30px',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
+
+            <button
+              style={{
+                backgroundColor: "#8B4513",
+                color: "white",
+                padding: "15px 30px",
+                border: "none",
+                borderRadius: "4px",
+                fontSize: "18px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
               Add to Cart
             </button>
           </div>
@@ -173,23 +194,22 @@ export default function ProductPage() {
       </div>
 
       {/* Reviews Section */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '1fr 1fr', 
-        gap: '30px' 
-      }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "30px",
+        }}
+      >
         <div>
-          <ReviewForm 
-            productId={productId} 
+          <ReviewForm
+            productId={productId}
             onReviewSubmitted={handleReviewSubmitted}
           />
         </div>
-        
+
         <div>
-          <ReviewsList 
-            productId={productId} 
-            refreshTrigger={refreshReviews}
-          />
+          <ReviewsList productId={productId} refreshTrigger={refreshReviews} />
         </div>
       </div>
     </div>
