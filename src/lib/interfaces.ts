@@ -45,3 +45,11 @@ export interface Category {
   name: string
   products: Product[]
 }
+
+export interface CartItem {
+  id: number;
+  name: string;
+  price: number;
+  image: string;
+  quantity: number;
+}

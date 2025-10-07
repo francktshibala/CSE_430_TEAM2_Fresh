@@ -200,6 +200,136 @@
   margin-right: 0.5rem;
 }
 
+/* Container for the entire cart page */
+.cartSection {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  font-family: Arial, sans-serif;
+}
+
+.cartSection h2 {
+  margin-bottom: 1.5rem;
+  font-size: 2rem;
+  color: #333;
+  text-align: center;
+}
+
+.cartSection p {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Cart items list */
+.cartSection ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.cartItem {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  border-bottom: 1px solid #eee;
+}
+
+.cartItem:last-child {
+  border-bottom: none;
+}
+
+.cartItem div {
+  flex: 1;
+}
+
+.cartItem h4 {
+  margin: 0;
+  font-size: 1.1rem;
+  color: #222;
+}
+
+.cartItem p {
+  margin: 0.3rem 0;
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Quantity controls */
+.quantityControls {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  border: .5px solid black;
+  width: fit-content;
+}
+
+.quantityControls button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: .1rem;
+  width: 30px;
+  height: 30px;
+  background-color: transparent;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.quantityControls button:hover {
+  background-color: #e0e0e0;
+}
+
+.quantityControls span {
+  width: 25px;
+  text-align: center;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Total and checkout button */
+.total {
+  margin-top: 1.5rem;
+  font-size: 1.5rem;
+  text-align: right;
+  color: #222;
+}
+
+.checkoutButton {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.checkoutButton:hover:not(:disabled) {
+  background-color: #0056b3;
+}
+
+.checkoutButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Login warning */
+.loginWarning {
+  text-align: center;
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+
 
 @media (prefers-color-scheme: dark) {
   .page {

@@ -1,6 +1,10 @@
+"use client"
+
 import styles from "@/app/page.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { useCart } from "@/app/context/CartContext";
+import { CartItem } from "@/lib/interfaces";
 
 export default function Card({
   id,
@@ -18,7 +22,10 @@ export default function Card({
   price: number;
     rating: number;
     ratingAmount: number;
-}) {
+  }) {
+  
+  const { addToCart } = useCart();
+  
   const stars =
     rating > 4.9
       ? "★★★★★"
@@ -29,6 +36,18 @@ export default function Card({
       : rating > 1.9
       ? "★★"
       : "★";
+
+  const handleAddToCart = () => {
+    console.log("added to cart!!!")
+    const item: CartItem = {
+      id,
+      name: title,
+      price,
+      image,
+      quantity: 1,
+    };
+    addToCart(item);
+  }
 
   return (
     <div className={styles.featuredcard}>
@@ -47,13 +66,19 @@ export default function Card({
         </div>
         <p>
           <span className={styles.stars}> {`${stars}`}</span>
-          {`  ${rating} (${ratingAmount})`}
+          {`  ${rating.toFixed(1)} (${ratingAmount})`}
         </p>
         <div className={styles.cardPrice}>
           <p>
             <strong>{`$${price}`}</strong>
           </p>
-          <button className={styles.productButton}>Add to cart</button>
+          <button
+            className={styles.productButton}
+            onClick={handleAddToCart}
+            aria-label="Add to cart"
+          >
+            Add to cart
+          </button>
         </div>
       </div>
       <Link
