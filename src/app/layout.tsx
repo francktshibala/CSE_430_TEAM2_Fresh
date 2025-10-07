@@ -2,6 +2,7 @@ import Header from "@/app/ui/header";
 import Footer from "@/app/ui/footer"; 
 import { CartProvider } from "./context/CartContext";
 import "@/app/globals.css";
+import Toast from "./ui/toast";
 
 export default function RootLayout({
   children,
@@ -12,10 +13,11 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <CartProvider>
-        <Header />
-        <main className="page-content">{children}</main>
+          <Toast />
+          <Header />
+          <main className="page-content">{children}</main>
           <Footer />
-        </CartProvider>  
+        </CartProvider>
       </body>
     </html>
   );
