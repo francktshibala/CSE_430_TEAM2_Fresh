@@ -1,57 +1,72 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
-const prisma = new PrismaClient();
-
+// ✅ GET - fetch single product
 export async function GET(
-  request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  _req: Request,
+  context: { params: Promise<{ id: string }> } // params is now async
 ) {
   try {
-    const { id } = await params;
-    const productId = parseInt(id);
-
-    if (isNaN(productId)) {
-      return NextResponse.json(
-        { error: 'Invalid product ID' },
-        { status: 400 }
-      );
-    }
-
+    const { id } = await context.params; // ⬅️ must await params
     const product = await prisma.product.findUnique({
-      where: { id: productId },
-      include: {
-        user: {
-          select: { name: true }
-        },
-        category: {
-          select: { name: true }
-        },
-        reviews: {
-          include: {
-            user: {
-              select: { name: true }
-            }
-          }
-        }
-      }
+      where: { id: parseInt(id, 10) },
     });
 
-    if (!product) {
-      return NextResponse.json(
-        { error: 'Product not found' },
-        { status: 404 }
-      );
-    }
+    if (!product)
+      return NextResponse.json({ error: "Product not found" }, { status: 404 });
 
-    return NextResponse.json({ product });
+    return NextResponse.json(product);
   } catch (error) {
-    console.error('Get product error:', error);
+    console.error("Error fetching product:", error);
     return NextResponse.json(
-      { error: 'Internal server error' },
+      { error: "Failed to fetch product" },
       { status: 500 }
     );
-  } finally {
-    await prisma.$disconnect();
+  }
+}
+
+// ✅ PUT - update product
+export async function PUT(
+  req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await context.params; // ⬅️ await it
+    const data = await req.json();
+
+    const updated = await prisma.product.update({
+      where: { id: parseInt(id, 10) },
+      data,
+    });
+
+    return NextResponse.json(updated, { status: 200 });
+  } catch (error) {
+    console.error("Error updating product:", error);
+    return NextResponse.json(
+      { error: "Failed to update product" },
+      { status: 500 }
+    );
+  }
+}
+
+// ✅ DELETE - remove product
+export async function DELETE(
+  _req: Request,
+  context: { params: Promise<{ id: string }> }
+) {
+  try {
+    const { id } = await context.params;
+
+    await prisma.product.delete({
+      where: { id: parseInt(id, 10) },
+    });
+
+    return NextResponse.json({ message: "Product deleted" }, { status: 200 });
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    return NextResponse.json(
+      { error: "Failed to delete product" },
+      { status: 500 }
+    );
   }
 }
