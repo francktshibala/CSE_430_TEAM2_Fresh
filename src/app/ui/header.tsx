@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import { FaSearch, FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
+import { useCart } from "@/app/context/CartContext";
 
 const navlinks = [
   { name: "Home", path: "/" },
@@ -14,10 +15,13 @@ const navlinks = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
+  
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
+  
+  const { cart } = useCart();
+  const cartTotal = cart.reduce((total, item) => total + item.quantity, 0);
 
   return (
     <header className="header">
@@ -61,7 +65,7 @@ export default function Header() {
           title="Shopping Cart"
         >
           <FaShoppingCart />
-          <span className="cart-count">0</span>
+          <span className="cart-count">{cartTotal}</span>
         </Link>
         <Link
           href="/login"

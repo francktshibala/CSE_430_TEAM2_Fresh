@@ -5,6 +5,8 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import ReviewsList from '@/app/ui/reviews-list';
 import ReviewForm from '@/app/ui/review-form';
+import Image from 'next/image';
+import { useCart } from '@/app/context/CartContext';
 
 interface Product {
   id: number;
@@ -28,6 +30,7 @@ export default function ProductPage() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [refreshReviews, setRefreshReviews] = useState(0);
+  const { addToCart } = useCart();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -55,6 +58,20 @@ export default function ProductPage() {
   const handleReviewSubmitted = () => {
     setRefreshReviews(prev => prev + 1);
   };
+
+    const handleAddToCart = () => {
+      if (!product) return;
+
+      const cartItem = {
+        id: product.id,
+        name: product.name,
+        price: product.price,
+        image: product.image,
+        quantity: 1,
+      };
+
+      addToCart(cartItem);
+    };
 
   if (loading) {
     return (
@@ -85,87 +102,106 @@ export default function ProductPage() {
   }
 
   return (
-    <div style={{ 
-      maxWidth: '1200px', 
-      margin: '0 auto', 
-      padding: '20px',
-      backgroundColor: '#f5f5f5',
-      minHeight: '100vh'
-    }}>
+    <div
+      style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        padding: "20px",
+        backgroundColor: "#f5f5f5",
+        minHeight: "100vh",
+      }}
+    >
       {/* Product Details */}
-      <div style={{
-        backgroundColor: 'white',
-        borderRadius: '8px',
-        padding: '30px',
-        marginBottom: '30px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
-      }}>
-        <div style={{ 
-          display: 'grid', 
-          gridTemplateColumns: '1fr 1fr', 
-          gap: '40px',
-          alignItems: 'start'
-        }}>
+      <div
+        style={{
+          backgroundColor: "white",
+          borderRadius: "8px",
+          padding: "30px",
+          marginBottom: "30px",
+          boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
+        }}
+      >
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "40px",
+            alignItems: "start",
+          }}
+        >
           <div>
-            <img
+            <Image
               src={product.image}
               alt={product.name}
+              width={530}
+              height={400}
               style={{
-                width: '100%',
-                height: '400px',
-                objectFit: 'cover',
-                borderRadius: '8px'
+                width: "100%",
+                height: "400px",
+                objectFit: "cover",
+                borderRadius: "8px",
               }}
             />
           </div>
-          
+
           <div>
-            <h1 style={{ 
-              color: '#8B4513', 
-              fontSize: '32px', 
-              marginBottom: '10px' 
-            }}>
+            <h1
+              style={{
+                color: "#8B4513",
+                fontSize: "32px",
+                marginBottom: "10px",
+              }}
+            >
               {product.name}
             </h1>
-            
-            <p style={{ 
-              color: '#666', 
-              fontSize: '16px', 
-              marginBottom: '15px' 
-            }}>
+
+            <p
+              style={{
+                color: "#666",
+                fontSize: "16px",
+                marginBottom: "15px",
+              }}
+            >
               by {product.user.name} • {product.category.name}
             </p>
-            
-            <p style={{ 
-              fontSize: '28px', 
-              fontWeight: 'bold', 
-              color: '#8B4513',
-              marginBottom: '20px'
-            }}>
+
+            <p
+              style={{
+                fontSize: "28px",
+                fontWeight: "bold",
+                color: "#8B4513",
+                marginBottom: "20px",
+              }}
+            >
               ${product.price}
             </p>
-            
+
             {product.description && (
-              <p style={{ 
-                color: '#555', 
-                lineHeight: '1.6',
-                marginBottom: '30px',
-                fontSize: '16px'
-              }}>
+              <p
+                style={{
+                  color: "#555",
+                  lineHeight: "1.6",
+                  marginBottom: "30px",
+                  fontSize: "16px",
+                }}
+              >
                 {product.description}
               </p>
             )}
-            
-            <button style={{
-              backgroundColor: '#8B4513',
-              color: 'white',
-              padding: '15px 30px',
-              border: 'none',
-              borderRadius: '4px',
-              fontSize: '18px',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}>
+
+            <button
+              onClick={handleAddToCart}
+              style={{
+                backgroundColor: "#8B4513",
+                color: "white",
+                padding: "15px 30px",
+                border: "none",
+                borderRadius: "4px",
+                fontSize: "18px",
+                fontWeight: "bold",
+                cursor: "pointer",
+              }}
+            >
               Add to Cart
             </button>
           </div>
@@ -173,23 +209,22 @@ export default function ProductPage() {
       </div>
 
       {/* Reviews Section */}
-      <div style={{ 
-        display: 'grid', 
-        gridTemplateColumns: '1fr 1fr', 
-        gap: '30px' 
-      }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: "30px",
+        }}
+      >
         <div>
-          <ReviewForm 
-            productId={productId} 
+          <ReviewForm
+            productId={productId}
             onReviewSubmitted={handleReviewSubmitted}
           />
         </div>
-        
+
         <div>
-          <ReviewsList 
-            productId={productId} 
-            refreshTrigger={refreshReviews}
-          />
+          <ReviewsList productId={productId} refreshTrigger={refreshReviews} />
         </div>
       </div>
     </div>
