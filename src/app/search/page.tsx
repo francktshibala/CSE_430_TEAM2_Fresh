@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "@/app/page.module.css";
 import type { Product } from "@prisma/client";
 
-export default function SearchPage() {
+function SearchResults() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
   const [results, setResults] = useState<Product[]>([]);
@@ -70,5 +70,13 @@ export default function SearchPage() {
         <p style={{ textAlign: "center", marginTop: "2rem" }}>No products found.</p>
       )}
     </div>
+  );
+}
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<p style={{ textAlign: "center" }}>Loading search...</p>}>
+      <SearchResults />
+    </Suspense>
   );
 }
