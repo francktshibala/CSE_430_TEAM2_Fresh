@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { FaSearch, FaHeart, FaShoppingCart, FaUser } from "react-icons/fa";
+import { FaShoppingCart, FaUser } from "react-icons/fa";
 import { useCart } from "@/app/context/CartContext";
+import { useRouter } from "next/navigation";
 
 const navlinks = [
   { name: "Home", path: "/" },
@@ -15,6 +16,17 @@ const navlinks = [
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const router = useRouter();
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  
+    const handleSearchSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      if (searchQuery.trim()) {
+        router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+        setSearchQuery(""); // optional: clear search after submit
+      }
+    };
   
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
@@ -42,22 +54,19 @@ export default function Header() {
       </nav>
 
       <div className="header-icons">
-        <Link
-          href="/search"
-          className="icon"
-          aria-label="Search"
-          title="Search"
-        >
-          <FaSearch />
-        </Link>
-        <Link
-          href="/favorites"
-          className="icon"
-          aria-label="Favorites"
-          title="Favorites"
-        >
-          <FaHeart />
-        </Link>
+      <form onSubmit={handleSearchSubmit} className="search-form">
+        <input
+          type="text"
+          placeholder="Search products..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
+        />
+        <button type="submit" className="search-btn">
+          Search
+        </button>
+      </form>
+    
         <Link
           href="/cart"
           className="icon cart-icon"
