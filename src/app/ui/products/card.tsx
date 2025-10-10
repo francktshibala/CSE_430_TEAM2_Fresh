@@ -14,6 +14,7 @@ export default function Card({
   price,
   rating,
   ratingAmount,
+  userId,
 }: {
   id: number;
   title: string;
@@ -22,6 +23,7 @@ export default function Card({
   price: number;
     rating: number;
     ratingAmount: number;
+    userId: number;
   }) {
   
   const { addToCart } = useCart();
@@ -52,18 +54,19 @@ export default function Card({
   return (
     <div className={styles.featuredcard}>
       <div className={styles.imageContainer}>
-        <Image
-          src={image}
-          alt={`${title} image`}
-          width={600}
-          height={450}
-
-        />
+        <Image src={image} alt={`${title} image`} width={600} height={450} />
       </div>
       <div className={styles.productInfo}>
         <div>
           <h3>{title}</h3>
-          <p>{`by ${creator}`}</p>
+          <Link
+            className={styles.link}
+            href={`/seller/${userId}/profile`}
+            aria-label="View Seller Profile"
+            title="View Seller Profile"
+          >
+            <p>{`by ${creator}`}</p>
+          </Link>
         </div>
         <p>
           <span className={styles.stars}> {`${stars}`}</span>
