@@ -1,14 +1,16 @@
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
+  _req: Request,
+  context: { params: Promise<{ id: string }> } // params is async
 ) {
   try {
-    const userId = Number(params.id);
+    const { id } = await context.params; // must await
+    const userId = parseInt(id, 10);
+
     if (isNaN(userId)) {
       return NextResponse.json({ error: "Invalid user ID" }, { status: 400 });
     }
