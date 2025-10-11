@@ -128,7 +128,7 @@ export default function ProductList({ products, categories }: Props) {
             <option value="all">All Categories</option>
             {categories.map((cat) => {
               return (
-                <option key={cat.id} value={cat.id} aria-label={cat.name}>
+                <option key={cat.id} value={cat.id}>
                   {cat.name}
                 </option>
               );

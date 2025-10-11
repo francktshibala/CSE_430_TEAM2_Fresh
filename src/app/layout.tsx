@@ -15,7 +15,7 @@ export default function RootLayout({
         <CartProvider>
           <Toast />
           <Header />
-          <title>Handcrafted Haven</title>
+          {/* <title>Handcrafted Haven</title> */}
           <main className="page-content">{children}</main>
           <Footer />
         </CartProvider>
