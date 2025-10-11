@@ -14,9 +14,9 @@ export default function Footer() {
         <div className="footer-section">
           <h3>Follow Us</h3>
           <div className="footer-icons">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/" aria-label='facebook'><FaFacebook /></a>
+            <a href="https://www.instagram.com" aria-label='instagram'><FaInstagram /></a>
+            <a href="https://www.twitter.com" aria-label='twitter'><FaTwitter /></a>
           </div>
         </div>
 
@@ -60,6 +60,7 @@ export default function Footer() {
           <p>Subscribe for updates and special offers</p>
           <div style={{display: 'flex', gap: '0.5rem', marginTop: '1rem'}}>
             <input 
+              aria-label='email'
               type="email" 
               placeholder="Enter your email" 
               style={{
@@ -69,7 +70,8 @@ export default function Footer() {
                 flex: 1
               }}
             />
-            <button 
+            <button
+            aria-label='subscribe'  
               style={{
                 padding: '0.5rem 1rem',
                 backgroundColor: 'var(--color-highlight)',
@@ -78,7 +80,7 @@ export default function Footer() {
                 cursor: 'pointer'
               }}
             >
-              Suscribe
+              Subscribe
             </button>
           </div>
         </div>

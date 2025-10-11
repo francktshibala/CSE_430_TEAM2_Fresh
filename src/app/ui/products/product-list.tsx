@@ -118,6 +118,7 @@ export default function ProductList({ products, categories }: Props) {
         <div className={styles.categoryfilter}>
           <h4 className={styles.label}>Categories</h4>
           <select
+            aria-label="categories"
             value={selectedCategoryId}
             onChange={(e) => {
               const value = e.target.value;
@@ -127,7 +128,7 @@ export default function ProductList({ products, categories }: Props) {
             <option value="all">All Categories</option>
             {categories.map((cat) => {
               return (
-                <option key={cat.id} value={cat.id}>
+                <option key={cat.id} value={cat.id} aria-label={cat.name}>
                   {cat.name}
                 </option>
               );

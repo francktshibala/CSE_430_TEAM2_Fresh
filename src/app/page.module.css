@@ -126,8 +126,8 @@
 }
 
 .stars {
-  color: rgb(255, 196, 0);
-  text-shadow: 0 0 0.7px black;
+
+  text-shadow: 0 0 1px black;
 }
 
 /* Slider styling */
