@@ -42,6 +42,7 @@ export default async function ProductPage() {
               price={item.price}
               rating={item.average}
               ratingAmount={item.reviews.length}
+              userId={item.userId}
             />
           );
         })}

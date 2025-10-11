@@ -7,16 +7,25 @@ export default function Footer() {
         {/* Logo Description */}
         <div className="footer-section">
           <div className="footer-logo">Handcrafted Haven</div>
-          <p>Discover unique, handmade treasures crafted with love and attention to detail.</p>
+          <p>
+            Discover unique, handmade treasures crafted with love and attention
+            to detail.
+          </p>
         </div>
 
         {/* Social Media */}
         <div className="footer-section">
           <h3>Follow Us</h3>
           <div className="footer-icons">
-            <a href="#"><FaFacebook /></a>
-            <a href="#"><FaInstagram /></a>
-            <a href="#"><FaTwitter /></a>
+            <a href="https://www.facebook.com/" aria-label="facebook">
+              <FaFacebook />
+            </a>
+            <a href="https://www.instagram.com" aria-label="instagram">
+              <FaInstagram />
+            </a>
+            <a href="https://www.twitter.com" aria-label="twitter">
+              <FaTwitter />
+            </a>
           </div>
         </div>
 
@@ -24,11 +33,21 @@ export default function Footer() {
         <div className="footer-section">
           <h3>Quick Links</h3>
           <ul>
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Our Artisans</a></li>
-            <li><a href="#">Shipping Info</a></li>
-            <li><a href="#">Returns And Exchanges</a></li>
-            <li><a href="#">FAQs</a></li>
+            <li>
+              <a href="#">About Us</a>
+            </li>
+            <li>
+              <a href="#">Our Artisans</a>
+            </li>
+            <li>
+              <a href="#">Shipping Info</a>
+            </li>
+            <li>
+              <a href="#">Returns And Exchanges</a>
+            </li>
+            <li>
+              <a href="#">FAQs</a>
+            </li>
           </ul>
         </div>
 
@@ -36,11 +55,21 @@ export default function Footer() {
         <div className="footer-section">
           <h3>Categories</h3>
           <ul>
-            <li><a href="#">Ceramics and Pottery</a></li>
-            <li><a href="#">Wood Crafts</a></li>
-            <li><a href="#">Jewelry</a></li>
-            <li><a href="#">Textiles</a></li>
-            <li><a href="#">Home Decor</a></li>
+            <li>
+              <a href="#">Ceramics and Pottery</a>
+            </li>
+            <li>
+              <a href="#">Wood Crafts</a>
+            </li>
+            <li>
+              <a href="#">Jewelry</a>
+            </li>
+            <li>
+              <a href="#">Textiles</a>
+            </li>
+            <li>
+              <a href="#">Home Decor</a>
+            </li>
           </ul>
         </div>
 
@@ -58,27 +87,29 @@ export default function Footer() {
         <div className="footer-section">
           <h3>Newsletter</h3>
           <p>Subscribe for updates and special offers</p>
-          <div style={{display: 'flex', gap: '0.5rem', marginTop: '1rem'}}>
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
+          <div style={{ display: "flex", gap: "0.5rem", marginTop: "1rem" }}>
+            <input
+              aria-label='email'
+              type="email"
+              placeholder="Enter your email"
               style={{
-                padding: '0.5rem',
-                borderRadius: '4px',
-                border: '1px solid #ccc',
-                flex: 1
+                padding: "0.5rem",
+                borderRadius: "4px",
+                border: "1px solid #ccc",
+                flex: 1,
               }}
             />
-            <button 
+            <button
+              aria-label='subscribe'
               style={{
-                padding: '0.5rem 1rem',
-                backgroundColor: 'var(--color-highlight)',
-                border: 'none',
-                borderRadius: '4px',
-                cursor: 'pointer'
+                padding: "0.5rem 1rem",
+                backgroundColor: "var(--color-highlight)",
+                border: "none",
+                borderRadius: "4px",
+                cursor: "pointer",
               }}
             >
-              Suscribe
+              Subscribe
             </button>
           </div>
         </div>
@@ -94,5 +125,5 @@ export default function Footer() {
         </div>
       </div>
     </footer>
-  )
+  );
 }

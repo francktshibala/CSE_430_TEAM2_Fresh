@@ -12,6 +12,12 @@ interface User {
   createdAt: string;
 }
 
+
+function capitalizeFirstLetter(str?: string) {
+  if (!str) return "";
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
 export default function ProfilePage() {
   const [user, setUser] = useState<User | null>(null);
   const [loading, setLoading] = useState(true);
@@ -159,7 +165,8 @@ export default function ProfilePage() {
                 margin: "0 0 10px 0",
               }}
             >
-              Welcome, {user?.name}! ({user?.accountType})
+              Welcome, {capitalizeFirstLetter(user?.name)}! ({user?.accountType}
+              )
             </h1>
             <p
               style={{
@@ -244,7 +251,7 @@ export default function ProfilePage() {
                   fontWeight: "500",
                 }}
               >
-                {user?.name}
+                {capitalizeFirstLetter(user?.name)}
               </div>
             </div>
 
