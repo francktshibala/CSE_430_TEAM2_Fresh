@@ -71,7 +71,7 @@ export default function Footer() {
               }}
             />
             <button
-            aria-label='subscribe'  
+              aria-label='subscribe'  
               style={{
                 padding: '0.5rem 1rem',
                 backgroundColor: 'var(--color-highlight)',
