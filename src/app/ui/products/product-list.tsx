@@ -118,6 +118,7 @@ export default function ProductList({ products, categories }: Props) {
         <div className={styles.categoryfilter}>
           <h4 className={styles.label}>Categories</h4>
           <select
+            aria-label="categories"
             value={selectedCategoryId}
             onChange={(e) => {
               const value = e.target.value;
