@@ -184,6 +184,7 @@ export default function ProductList({ products, categories }: Props) {
                   price={item.price}
                   rating={item.average}
                   ratingAmount={item.reviews.length}
+                  userId={item.userId}
                 />
               );
             })
